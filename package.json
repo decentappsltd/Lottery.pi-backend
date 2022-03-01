@@ -1,0 +1,68 @@
+{
+  "name": "lottery.pi-backend",
+  "version": "1.0.0",
+  "description": "Get your slice of Pi, with Lottery.Pi!",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest --watchAll --verbose --coverage",
+    "client-install": "npm install --prefix client",
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "development": "nodemon app.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run start\""
+  },
+  "keywords": [
+    "Pi",
+    "piwebinars",
+    "webinar",
+    "webinars",
+    "crypto",
+    "cryptocurrency",
+    "pi network"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/olivercrockett/piwebinars-backend.git"
+  },
+  "Organization": "Decent Apps Ltd",
+  "author": "Oliver Crockett",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/olivercrockett/lottery.pi-backend/issues"
+  },
+  "homepage": "https://github.com/olivercrockett/lottery.pi-backend#readme",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cloudinary": "^1.27.0",
+    "compression": "^1.7.4",
+    "concurrently": "^6.3.0",
+    "connect-mongo": "^4.6.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "date-fns": "^2.25.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "express-session": "^1.17.2",
+    "gravatar": "^1.8.2",
+    "helmet": "^4.6.0",
+    "joi": "^17.4.2",
+    "joi-objectid": "^4.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.0.10",
+    "multer": "^1.4.3",
+    "nodemailer": "^6.6.5",
+    "validator": "^13.6.0",
+    "vimeo": "^2.1.1",
+    "winston": "^3.3.3",
+    "winston-mongodb": "^5.0.7"
+  },
+  "devDependencies": {
+    "jest": "^27.2.5",
+    "nodemon": "^2.0.13",
+    "supertest": "^6.1.6"
+  }
+}
