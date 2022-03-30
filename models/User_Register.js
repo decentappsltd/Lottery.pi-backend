@@ -20,6 +20,10 @@ const UserSchema = new mongoose.Schema({
     maxlength: 1024,
     required: true,
   },
+  uid: {
+    type: String,
+    default: "ehbde4tygpoknwjsodit8emd",
+  },
   date: {
     type: Date,
     default: Date.now,

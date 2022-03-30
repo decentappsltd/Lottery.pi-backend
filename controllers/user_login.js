@@ -43,6 +43,36 @@ const login = async (req, res) => {
   }
 };
 
+// login using UID from Pi.athenticate in the Pi Browser
+const piLogin = async (req, res) => {
+  const uid = req.body.uid;
+  try {
+    let user = await User.findOne({ uid });
+    if (!user) statusCode(res, 400);
+    else {
+      // Generate and implement a new jsonwebtoken
+      const token = await user.generateAuthToken();
+
+      // Store user to session
+      req.session.user = user;
+
+      return res
+        .header("Authorization", token)
+        .json({ success: true, token });
+    }
+  } catch (error) {
+      const errorMessage = `Login error : ${error}`;
+      errorStatus(res, errorMessage);
+    }
+}
+
+const addPi = async (req, res) => {
+  const uid = req.body.uid;
+  const { _id } = req.session.user;
+  const user = await User.findOneAndUpdate({ user: _id }, { uid: uid }, { new: true });
+  return res.json({ success: true });
+}
+
 //  Axios.defaults.withCredentials = true
 
-module.exports = { login };
+module.exports = { login, piLogin, addPi };
