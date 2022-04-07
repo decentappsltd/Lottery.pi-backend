@@ -6,7 +6,7 @@ const { validateLogin, User } = require("../models/User_Register");
 
 // Login a user
 const login = async (req, res) => {
-  const { username, password: userPassword } = req.body;
+  const { username, password: userPassword, uid } = req.body;
 
   // Validate the user credentials
   const { error } = validateLogin(req.body);
@@ -27,6 +27,10 @@ const login = async (req, res) => {
 
         // Generate and implement a new jsonwebtoken
         const token = await user.generateAuthToken();
+        console.log(req.body);
+        if (uid) {
+          const addedUID = await User.findOneAndUpdate({ username: username }, { uid: uid }, { new: true });
+        }
 
         // Remove password and store user to session
         delete user["password"];
@@ -69,7 +73,7 @@ const piLogin = async (req, res) => {
 const addPi = async (req, res) => {
   const uid = req.body.uid;
   const { _id } = req.session.user;
-  const user = await User.findOneAndUpdate({ user: _id }, { uid: uid }, { new: true });
+  // const user = await User.findOneAndUpdate({ user: _id }, { uid: uid }, { new: true });
   return res.json({ success: true });
 }
 
