@@ -54,7 +54,8 @@ const drawWinner = async (req, res) => {
     //draw winner
     const winner = await Enter.aggregate([{ $sample: { size: 1 } }]);
     const winnerObject = await winner.shift();
-    let updated_user = await UserProfile.findOneAndUpdate({ handle: winnerObject.user }, { won: true, $inc: {winnings: totals.thisWeek} },{ new: true });
+    const winAmount = totals.thisWeek*0.8;
+    let updated_user = await UserProfile.findOneAndUpdate({ handle: winnerObject.user }, { won: true, $inc: {winnings: winAmount} },{ new: true });
   
     //reset db
     totals.all += totals.thisWeek;
