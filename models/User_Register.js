@@ -82,6 +82,7 @@ const validateLogin = (req) => {
   const schema = Joi.object({
     username: Joi.string().min(2).required(),
     password: Joi.string().min(8).max(255).required(),
+    uid: Joi.string(),
   });
   return schema.validate(req);
 };
