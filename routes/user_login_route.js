@@ -6,7 +6,7 @@ const { isUserProfile } = require("../middleware/isUserMiddleware");
 const isAuthenticated = [auth, isUserProfile];
 
 // Load Controllers
-const { login, piLogin, addPi } = require("../controllers/user_login");
+const { login, piLogin } = require("../controllers/user_login");
 
 // @route   POST /login
 // @desc    Login a new user
@@ -17,10 +17,5 @@ router.post("/", login);
 // @desc    Login a new user
 // @access  Public
 router.post("/pi", piLogin);
-
-// @route   POST /login
-// @desc    Login a new user
-// @access  Public
-router.post("/add", isAuthenticated, addPi);
 
 module.exports = router;

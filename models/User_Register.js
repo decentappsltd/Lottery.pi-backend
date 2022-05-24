@@ -7,7 +7,6 @@ const { secretOrKey } = require("../config/keys");
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
   },
   username: {
     type: String,
@@ -18,23 +17,13 @@ const UserSchema = new mongoose.Schema({
     type: String,
     minlength: 5,
     maxlength: 1024,
-    required: true,
   },
   uid: {
     type: String,
-    default: "ehbde4tygpoknwjsodit8emd",
   },
   date: {
     type: Date,
     default: Date.now,
-  },
-  isUserVerified: {
-    type: Boolean,
-    default: false,
-  },
-  isEmailVerified: {
-    type: Boolean,
-    default: false,
   },
   tokens: [
     {
