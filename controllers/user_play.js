@@ -8,27 +8,25 @@ const playOne = async (entry) => {
   const totals = await Totals.findOne({ totals: "all" });
   totals.thisWeek += 1;
   await totals.save();
-  return res.json({ success: true });
 }
 
-const playTen = async (req, res) => { 
+const playTen = async (entry) => { 
   const username = [
-    req.body,
-    req.body,
-    req.body,
-    req.body,
-    req.body,
-    req.body,
-    req.body,
-    req.body,
-    req.body,
-    req.body
+    entry,
+    entry,
+    entry,
+    entry,
+    entry,
+    entry,
+    entry,
+    entry,
+    entry,
+    entry
 ];
   Enter.insertMany(username);
   const totals = await Totals.findOne({ totals: "all" });
   totals.thisWeek += 8;
   await totals.save();
-  return res.json({ success: true });
 }
 
 const getValues = async (req, res) => {

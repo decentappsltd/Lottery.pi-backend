@@ -23,8 +23,14 @@ const paymentComplete = async (req, res) => {
   const txid = req.body.txid;
   const responseFromPi = await axiosPi.post(`/v2/payments/${paymentId}/complete`, {txid}, config);
   const entry = req.body.entry;
-  await playOne(entry);
-  return res.status(200);
+  if (req.body.amount === "1") {
+    await playOne(entry);
+  } else if (req.body.amount === "8") {
+    await playTen(entry);
+  } else {
+    return res.json({ success: false });
+  }
+  return res.json({ success: true });
 };
 
 
