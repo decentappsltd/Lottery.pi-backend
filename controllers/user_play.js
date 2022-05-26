@@ -2,9 +2,8 @@ const { Enter } = require('../models/user_entry');
 const { Totals } = require('../models/totals');
 const { UserProfile } = require("../models/User_Profile");
 
-const playOne = async (req, res) => {
-  const newEntry = req.body;
-  const new_entry = new Enter(newEntry);
+const playOne = async (entry) => {
+  const new_entry = new Enter(entry);
   await new_entry.save();
   const totals = await Totals.findOne({ totals: "all" });
   totals.thisWeek += 1;

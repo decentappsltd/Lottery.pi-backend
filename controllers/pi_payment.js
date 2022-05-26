@@ -4,6 +4,7 @@ const axiosPi = axios.create({
   timeout: 20000,
 });
 const { piAuthToken } = require("../config/keys");
+const { playOne, playTen } = require("./user_play.js"); 
 
 const config = {
   headers: {
@@ -21,7 +22,9 @@ const paymentComplete = async (req, res) => {
   const paymentId = req.body.paymentId;
   const txid = req.body.txid;
   const responseFromPi = await axiosPi.post(`/v2/payments/${paymentId}/complete`, {txid}, config);
-  res.status(200);
+  const entry = req.body.entry;
+  await playOne(entry);
+  return res.status(200);
 };
 
 
