@@ -3,6 +3,7 @@ const { Totals } = require('../models/totals');
 const { UserProfile } = require("../models/User_Profile");
 
 const playOne = async (entry) => {
+  console.log(entry);
   const new_entry = new Enter(entry);
   await new_entry.save();
   const totals = await Totals.findOne({ totals: "all" });
@@ -11,6 +12,7 @@ const playOne = async (entry) => {
 }
 
 const playTen = async (entry) => { 
+  console.log(entry);
   const username = [
     entry,
     entry,
