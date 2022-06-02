@@ -9,6 +9,7 @@ const playOne = async (entry) => {
   const totals = await Totals.findOne({ totals: "all" });
   totals.thisWeek += 1;
   await totals.save();
+  await UserProfile.findOneAndUpdate({ handle: entry.user }, { $inc: {tickets: 1} });
 }
 
 const playTen = async (entry) => { 
@@ -29,6 +30,7 @@ const playTen = async (entry) => {
   const totals = await Totals.findOne({ totals: "all" });
   totals.thisWeek += 8;
   await totals.save();
+  await UserProfile.findOneAndUpdate({ handle: entry.user }, { $inc: {tickets: 8} });
 }
 
 const getValues = async (req, res) => {

@@ -20,6 +20,10 @@ const UserProfileSchema = new Schema({
     type: Number,
     default: 0,
   },
+  tickets: {
+    type: Number,
+    default: 0,
+  },
   won: {
     type: Boolean,
     default: false,
