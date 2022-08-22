@@ -8,6 +8,7 @@ const playOne = async (entry) => {
   await new_entry.save();
   const totals = await Totals.findOne({ totals: "all" });
   totals.thisWeek += 1;
+  totals.balance += 1;
   await totals.save();
   await UserProfile.findOneAndUpdate({ handle: entry.user }, { $inc: {tickets: 1} });
 }
@@ -25,10 +26,11 @@ const playTen = async (entry) => {
     entry,
     entry,
     entry
-];
+  ];
   Enter.insertMany(username);
   const totals = await Totals.findOne({ totals: "all" });
   totals.thisWeek += 8;
+  totals.balance += 8;
   await totals.save();
   await UserProfile.findOneAndUpdate({ handle: entry.user }, { $inc: {tickets: 8} });
 }
@@ -61,6 +63,7 @@ const drawWinner = async (req, res) => {
     //reset db
     totals.all += totals.thisWeek;
     totals.charity += 0.1*totals.thisWeek;
+    totals.profit += 0.1*totals.thisWeek;
     totals.thisWeek -= totals.thisWeek;
     await Totals.findOneAndUpdate({ totals: "all"}, { lastWinner: winnerObject.user },{ new: true });
     await totals.save();
